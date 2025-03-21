@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  labels:
+    name: deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      apptype: web-backend
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: web-backend
+    spec:
+      containers:
+      - name: my-app
+        image: chirinbanu2710/simplewebapp:latest
+        ports:
+              - containerPort: 7070
